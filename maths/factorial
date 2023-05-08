@@ -1,0 +1,11 @@
+package maths
+import "fmt"
+func main(){
+
+n:=5
+result := 1
+for i:=1;i<=n;i++{
+result *= i
+}
+fmt.Println(result)
+}
