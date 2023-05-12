@@ -1,9 +1,16 @@
 package linandbin
 import "fmt"
 
-type tmp struct {
-	a int32
-	b int32
+func linearSearch(arr []int, x int) bool{
+	for _,a :=rang arr{
+		if a==x{
+			return true
+		}
+	}
+	return false
+}
+func binarySearch(arr []int, x int) bool{
+
 }
 
 func main() {
