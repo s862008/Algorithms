@@ -26,17 +26,33 @@ func binarySearch(arr []int, x int) bool{
 	return false
 }
 
+func minmaxSearch(arr []int) (int, int) {
+
+	max := arr[0]
+	min := arr[0]
+	for _, a := range arr {
+		if a > max {
+			max = a
+		}
+		if a < min {
+			min = a
+		}
+	}
+	return min, max
+}
+
+
 func main() {
   arr := []int{45, 55, 23, 4, 56, 90, 22}
   srch := 4
-
+	// прямой поиск
 	if linearSearch(arr, srch) {
 		println("Искомое найдено!")
 	} else {
 		println("Искомое НЕ найдено!")
 	}
 	
-	
+	// бинарный поиск, где массив должен быть отсортирован
 	sort.Ints(arr)
 	
 	if binarySearch(arr, srch) {
@@ -44,5 +60,11 @@ func main() {
 	} else {
 		println("Искомое НЕ найдено!")
 	}
+	
+	// поиск имнимального и максимального значения
+	
+	arr2 := []int{45, 55, 203, 47, 56, 90, 56}
+	mn, mx := minmaxSearch(arr2)
+	fmt.Println("мин и макс:", mn, " ", mx)
   
 }
