@@ -50,8 +50,25 @@ return nil
 return s.top.value
 }
 
-func main{
- 
+func main(){
+ stack := &Stack{}
+    
+    // Добавление элементов в стек.
+    stack.Push("a")
+    stack.Push("b")
+    stack.Push("c")
+    
+    // Удаление верхнего элемента стека и печать его значения.
+    top := stack.Pop()
+    fmt.Println(top)
+
+    // Получение элемента на вершине стека без его удаления.
+    peek := stack.Peek()
+    fmt.Println(peek)
+
+    // Получение текущего размера стека.
+    size := stack.Size()
+    fmt.Println(size)
 
 
 }
