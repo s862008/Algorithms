@@ -1,57 +1,55 @@
 // Вот пример алгоритма Беллмана-Форда на языке Go:
 
-package main
-
 import (
-"fmt"
-"math"
+  "fmt"
+  "math"
 )
 
 type Edge struct {
-source int
-destination int
-weight int
+  source int
+  destination int
+  weight int
 }
 
 type Graph struct {
-vertices int
-edges []Edge
+  vertices int
+  edges []Edge
 }
 
 func BellmanFord(graph Graph, startVertex int) ([]int, []int) {
-dist := make([]int, graph.vertices)
-prev := make([]int, graph.vertices)
+  dist := make([]int, graph.vertices)
+  prev := make([]int, graph.vertices)
 
-for i := 0; i < graph.vertices; i++ {
-dist[i] = math.MaxInt32
-prev[i] = -1
-}
+  for i := 0; i < graph.vertices; i++ {
+    dist[i] = math.MaxInt32
+    prev[i] = -1
+  }
 
-dist[startVertex] = 0
+  dist[startVertex] = 0
 
-for i := 1; i < graph.vertices; i++ {
+  for i := 1; i < graph.vertices; i++ {
+    for j := 0; j < len(graph.edges); j++ {
+      u := graph.edges[j].source
+      v := graph.edges[j].destination
+      weight := graph.edges[j].weight
+      if dist[u] + weight < dist[v] {
+        dist[v] = dist[u] + weight
+        prev[v] = u
+      }
+    }
+  }
+
   for j := 0; j < len(graph.edges); j++ {
     u := graph.edges[j].source
     v := graph.edges[j].destination
     weight := graph.edges[j].weight
-    if dist[u]+weight < dist[v] {
-      dist[v] = dist[u] + weight
-      prev[v] = u
+    if dist[u] + weight < dist[v] {
+      fmt.Println("Negative Cycle Detected:")
+      return nil, nil
     }
   }
-}
 
-for j := 0; j < len(graph.edges); j++ {
-  u := graph.edges[j].source
-  v := graph.edges[j].destination
-  weight := graph.edges[j].weight
-  if dist[u]+weight < dist[v] {
-    fmt.Println("Граф содержит цикл с отрицательным весом.")
-    return nil, nil
-  }
-}
-
-return dist, prev
+  return dist, prev
 }
 
 func main() {
@@ -86,6 +84,7 @@ func main() {
     fmt.Printf("Кратчайший путь до вершины %d: %v\n", i, path)
   }
 }
+
 /*
 В этом примере алгоритм Беллмана-Форда реализован для нахождения кратчайших путей от одной вершины до всех остальных вершин в графе. 
 Заметьте, что в приведенном примере используется взвешенный граф с отрицательными весами ребер. 
