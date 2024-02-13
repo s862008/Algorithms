@@ -25,7 +25,7 @@ func cocktailSort(arr []int) {
   }
 
   // Проход справа налево
-  for i := right; i > left; i— {
+  for i := right; i > left; i-- {
     if arr[i] < arr[i-1] {
       arr[i], arr[i-1] = arr[i-1], arr[i]
       swapped = true
