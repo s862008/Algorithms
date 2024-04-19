@@ -5,10 +5,14 @@ import (
 )
 
 func squareRoot(num float64) float64 {
- guess := num / 2
+ guess :=num / 2
  for i := 0; i < 10; i++ {
-  guess = (guess + num/guess) / 2
- }
+  t:= guess
+  guess = (t + (num/t)) / 2
+    if(t == guess){
+        return guess
+    }
+}
  return guess
 }
 
